@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import Year from './year.js';
 
 
 
@@ -9,7 +10,8 @@ class Search extends React.Component {
     super(props);
 
     this.state = {
-      value: ''
+      value: '',
+      year: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,11 +22,10 @@ class Search extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('Movie search: ' + this.state.value);
     event.preventDefault();
     // To reference the method on App, you have to pass it as this.props.callBack to get access to the callback
     // this.props.onSubmit(this.state.term);
-    this.props.handlerFromParant(this.state.value);
+    this.props.handlerFromParent(this.state.value);
   }
 
   render(){
@@ -34,7 +35,7 @@ class Search extends React.Component {
         Search Movie:
         </label>
         <br />
-        <input type="text" value = {this.state.value} onChange = {this.handleChange}/>
+        <input className="searching" type="text" value = {this.state.value} onChange = {this.handleChange}/>
         <input type="submit" value="Submit" />
       </form>
     );
@@ -47,16 +48,16 @@ class App extends React.Component {
     super(props);
     this.changeValue = this.changeValue.bind(this);
     this.updateData = this.updateData.bind(this);
+    this.updateYear = this.updateYear.bind(this);
 
     this.state = {
       hits: [],
       rated: null,
       value: 'Lion King',
-      actors: []
+      actors: [],
+      year: "",
+      poster: 'http://pngimg.com/uploads/tv/tv_PNG39263.png'
     };
-  }
-
-  componentDidMount() {
   }
 
   componentDidUpdate(){
@@ -66,7 +67,7 @@ class App extends React.Component {
 
   updateData(){
     // console.log(this.state.value)
-    const API = 'http://www.omdbapi.com/?t=' + this.state.value+ '&apikey=';
+    const API = 'http://www.omdbapi.com/?t=' + this.state.value+'&y='+this.state.year+'&apikey=';
     const API_KEY = '7916cad4';
     fetch(API + API_KEY)
       .then(response => response.json())
@@ -89,7 +90,8 @@ class App extends React.Component {
     // console.log(this.state.value);
   }
 
-  characters(){
+  updateYear(event){
+    this.setState({ year: event});
 
   }
 
@@ -101,7 +103,7 @@ class App extends React.Component {
     <li key ={actor.toString()}>{actor}</li>
   );
 
-  const moviePoster = <img src = {this.state.poster}/>
+  const moviePoster = <img alt = '' src = {this.state.poster}/>
 
   if (isLoading) {
     return <p>Loading ...</p>;
@@ -109,27 +111,33 @@ class App extends React.Component {
 
 
   return (
-    <div className = "theatre">
-      <div className = "searchbar">
-      <Search value={this.state.value} handlerFromParant = {this.changeValue}/>
+    <div>
+      <div className = "header">
+      <h1>Movie Rating</h1>
       </div>
-      <div className = "movieinfo">
-      <h1>{this.state.title}</h1>
-      <h3>Type: {this.state.type}</h3>
-      <h2>{this.state.rated}</h2>
-      <h2>{this.state.source}</h2>
-      <p>{this.state.ratings}</p>
-      </div>
-      <div className = "moviedetails">
-      <h3>{this.state.released}</h3>
-      <ul>{listItems}</ul>
-      <h2>{this.state.actors}</h2>
-      <h2>{this.state.boxOffice}</h2>
+      <div className = "theatre">
+        <div className = "searchbar">
+        <Search value={this.state.value} handlerFromParent = {this.changeValue}/>
+        <Year value={this.state.year} handlerFromParent ={this.updateYear}/>
+        <div className = "moviePoster">
+          <div className = "moviescreen">
           {moviePoster}
+          </div>
+        </div>
+        </div>
+        <div className = "movieinfo">
+          <h1>{this.state.title}</h1>
+          <h3>Type: {this.state.type}</h3>
+          <h2>{this.state.rated}</h2>
+          <h2>{this.state.source}</h2>
+        <p>{this.state.ratings}</p>
+          <h3>{this.state.released}</h3>
+          <ul>{listItems}</ul>
+          <h2>{this.state.actors}</h2>
+          <h2>{this.state.boxOffice}</h2>
+        </div>
       </div>
-
     </div>
-
   );
 }
 
