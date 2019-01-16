@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Year from './year.js';
+import Moviereel from './moviereel.js'
 
 
 
@@ -100,7 +101,7 @@ class App extends React.Component {
 
   const actors = this.state.actors;
   const listItems = actors.map((actor) =>
-    <li key ={actor.toString()}>{actor}</li>
+    <li className = "actorList" key ={actor.toString()}>{actor}</li>
   );
 
   const moviePoster = <img alt = '' src = {this.state.poster}/>
@@ -132,11 +133,12 @@ class App extends React.Component {
           <h2>{this.state.source}</h2>
         <p>{this.state.ratings}</p>
           <h3>{this.state.released}</h3>
+          <h3> Actors/Actresses:</h3>
           <ul>{listItems}</ul>
-          <h2>{this.state.actors}</h2>
           <h2>{this.state.boxOffice}</h2>
         </div>
       </div>
+      <Moviereel />
     </div>
   );
 }
