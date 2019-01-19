@@ -1,25 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import './index.css';
 
 
 
-function Yearlist(props){
-  let start = 1990;
-  let end = 2019;
-
-  const years = []
-  var i;
-  for(i = 1990; i < end; i++){
-    years.push(i)
-  }
-  const yearList = years.map((year) =>
-  <option key ={year.toString()} value={year.toString}>{year}</option>);
-  return (
-    {years}
-  );
-
-}
+// function Yearlist(props){
+//
+// }
 
 class Year extends React.Component{
   constructor(props) {
@@ -45,6 +32,16 @@ class Year extends React.Component{
   }
 
   render(){
+    let start = 1990;
+    let end = 2019;
+
+    const years = []
+    var i;
+    for(i = start; i < end; i++){
+      years.push(i)
+    }
+    const yearList = years.map((year) =>
+    <option key ={year.toString()} value={year.toString()}>{year}</option>);
     return(
       // <form onSubmit={this.handleSubmit}>
       //   <label>Year:</label>
@@ -57,13 +54,10 @@ class Year extends React.Component{
         <label>Year:</label>
         <select className = "yearsearch" value = {this.state.year} name="year" onChange = {this.handleChange}>
           <option value=" "></option>
-          <option value="2002">2002</option>
-          <option value="2003">2003</option>
-          <option value="2004">2004</option>
-          <option value="2005">2005</option>
+          {yearList}
         </select>
         <input type="submit" value="Submit" />
-        <Yearlist />
+
       </form>
 
 

@@ -1,9 +1,58 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import './index.css';
 
-function allMovies(props){
+class Carousel extends React.Component{
+  constructor (props) {
+    super(props);
 
+    this.state = {
+      currentImageIndex: 0
+    };
+    this.previousSlide = this.previousSlide.bind(this);
+    this.nextSlide = this.nextSlide.bind(this);
+  }
+
+  componentDidUpdate(){
+
+  }
+
+  previousSlide(event){
+    this.setState({currentImageIndex: this.state.currentImageIndex -= 1});
+    alert(this.state.currentImageIndex);
+    this.props.handlerFromParent(this.state.currentImageIndex);
+  }
+
+  nextSlide(){
+    this.setState({currentImageIndex: this.state.currentImageIndex += 1});
+    alert(this.state.currentImageIndex);
+    this.props.handlerFromParent(this.state.currentImageIndex);
+
+  }
+
+  render () {
+    const Arrow = ({ direction, clickFunction, glyph }) => (
+      <div
+        className={ `slide-arrow ${direction}` }
+        onClick={ clickFunction }>
+        { glyph }
+      </div>
+    );
+
+    return (
+      <div className="carousel">
+        <Arrow
+          direction="left"
+          clickFunction={ this.previousSlide }
+          glyph="&#9664;" />
+
+        <Arrow
+          direction="right"
+          clickFunction={ this.nextSlide }
+          glyph="&#9654;" />
+      </div>
+    );
+}
 }
 
 class Moviereel extends React.Component{
@@ -12,16 +61,20 @@ class Moviereel extends React.Component{
 
     this.state = {
       search: this.props.title,
-      hits: []
+      hits: [],
+      showClass: "image-slide",
+      hiddenClass:"hidden",
+      currentImageIndex: 0,
     }
+    this.updateMovieReel = this.updateMovieReel.bind(this);
   }
 
   componentDidMount(){
     this.updateReel();
   }
 
-  allMovies(){
-
+  updateMovieReel(event){
+    this.setState({currentImageIndex: event});
   }
 
   updateReel(){
@@ -31,21 +84,28 @@ class Moviereel extends React.Component{
     fetch(API + API_KEY)
       .then(response => response.json())
       .then(data => this.setState({
+        hits: data["results"],
         homepage: 'http://image.tmdb.org/t/p/w185',
-        poster: data['results'][5]["poster_path"],
-        title: data['results'][0]["original_title"],
-        overview: data['results'][0]["overview"]
+        poster: data['results'][this.state.currentImageIndex]["poster_path"],
+        title: data['results'][this.state.currentImageIndex]["original_title"],
+        overview: data['results'][this.state.currentImageIndex]["overview"]
       }));
 
   }
   render(){
     const poster = this.state.homepage + this.state.poster
+    const movies = this.state.hits
+
+    const moviereel = movies.map((movie) =>
+    // <h2 key ={movie["original_title"]}>{movie["original_title"]}</h2>
+    <img className= {this.state.currentClass} src={this.state.homepage + movie["poster_path"]} alt = ''/>
+    );
+
     return(
     <div className = "moviereel">
       <h1>Search Reel</h1>
-      <h2>{this.state.title}</h2>
-      <img src={poster} alt=""/>
-      <p>{this.state.overview}</p>
+      {moviereel[this.state.currentImageIndex]}
+      < Carousel handlerFromParent = {this.updateMovieReel}/>
     </div>
 
     );

@@ -62,8 +62,9 @@ img{
 }
 
 .moviereel img{
-  width: 50%;
-  height:100vh;
+  text-align: center;
+  width: 30%;
+  height:90vh;
 }
 
 .header{
@@ -77,4 +78,12 @@ img{
 .moviePoster{
   height:10%;
   width:100%;
+}
+
+.image-slide{
+  display: block;
+}
+
+.hidden{
+  display: none;
 }
