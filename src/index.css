@@ -57,20 +57,30 @@ body{
 }
 
 img{
-  width: 90%;
+  width: 100%;
   border-radius: 30px;
 }
 
 .moviereel img{
   text-align: center;
-  width: 30%;
-  height:90vh;
+  height:70vh;
+}
+
+.moviereel{
+  width: 90%;
+  margin: 0 auto;
+}
+
+.reel-image{
+  display:grid;
+  grid-template: 100% / repeat(3, 1fr);
 }
 
 .header{
-  width:100%;
+  width:80%;
+  margin: 0 auto;
   height:20vh;
-  font-size: 40px;
+  font-size: 60px;
   text-align: center;
   background-color: rgb(23, 23, 23, .7);
 }
@@ -86,4 +96,23 @@ img{
 
 .hidden{
   display: none;
+}
+
+.carousel{
+  width: 80%;
+  margin: 0 auto;
+}
+
+.carousel div{
+  display: inline-grid;
+  font-size: 50px;
+}
+
+.faded-image{
+  opacity: .3;
+}
+
+.nonfaded-image img{
+  border: 4px solid white;
+  border-radius: 40px;
 }

@@ -97,7 +97,7 @@ class App extends React.Component {
   }
 
   render() {
-  const { title, isLoading } = this.state;
+  const {isLoading } = this.state;
 
   const actors = this.state.actors;
   const listItems = actors.map((actor) =>

@@ -7,26 +7,22 @@ class Carousel extends React.Component{
     super(props);
 
     this.state = {
-      currentImageIndex: 0
+      indexChange: 0
     };
     this.previousSlide = this.previousSlide.bind(this);
     this.nextSlide = this.nextSlide.bind(this);
   }
 
-  componentDidUpdate(){
-
-  }
-
   previousSlide(event){
-    this.setState({currentImageIndex: this.state.currentImageIndex -= 1});
-    alert(this.state.currentImageIndex);
-    this.props.handlerFromParent(this.state.currentImageIndex);
+    this.setState({indexChange: - 1});
+    alert(this.state.indexChange);
+    this.props.handlerFromParent(this.state.indexChange);
   }
 
   nextSlide(){
-    this.setState({currentImageIndex: this.state.currentImageIndex += 1});
-    alert(this.state.currentImageIndex);
-    this.props.handlerFromParent(this.state.currentImageIndex);
+    this.setState({indexChange: 1});
+    alert(this.state.indexChange);
+    this.props.handlerFromParent(this.state.indexChange);
 
   }
 
@@ -64,17 +60,28 @@ class Moviereel extends React.Component{
       hits: [],
       showClass: "image-slide",
       hiddenClass:"hidden",
-      currentImageIndex: 0,
+      firstImageIndex: 0
     }
     this.updateMovieReel = this.updateMovieReel.bind(this);
   }
 
   componentDidMount(){
     this.updateReel();
+    setInterval(this.autoreel(), 1000);
+  }
+
+  autoreel(){
+    this.setState({firstImageIndex: this.state.firstImageIndex += 1})
   }
 
   updateMovieReel(event){
-    this.setState({currentImageIndex: event});
+    if (this.state.firstImageIndex + 2 < this.state.hits.length - 1){
+    this.setState({firstImageIndex: this.state.firstImageIndex += event});
+    }
+    else{
+      this.setState({firstImageIndex: 0});
+    }
+    console.log(event);
   }
 
   updateReel(){
@@ -86,25 +93,34 @@ class Moviereel extends React.Component{
       .then(data => this.setState({
         hits: data["results"],
         homepage: 'http://image.tmdb.org/t/p/w185',
-        poster: data['results'][this.state.currentImageIndex]["poster_path"],
-        title: data['results'][this.state.currentImageIndex]["original_title"],
-        overview: data['results'][this.state.currentImageIndex]["overview"]
+        poster: data['results'][this.state.firstImageIndex]["poster_path"],
+        title: data['results'][this.state.firstImageIndex]["original_title"],
+        overview: data['results'][this.state.firstImageIndex]["overview"]
       }));
 
   }
+
   render(){
-    const poster = this.state.homepage + this.state.poster
     const movies = this.state.hits
 
     const moviereel = movies.map((movie) =>
-    // <h2 key ={movie["original_title"]}>{movie["original_title"]}</h2>
-    <img className= {this.state.currentClass} src={this.state.homepage + movie["poster_path"]} alt = ''/>
+    <img src={this.state.homepage + movie["poster_path"]} alt = ''/>
     );
 
     return(
     <div className = "moviereel">
       <h1>Search Reel</h1>
-      {moviereel[this.state.currentImageIndex]}
+      <div className="reel-image">
+        <div className = "faded-image">
+        {moviereel[this.state.firstImageIndex]}
+        </div>
+        <div className="nonfaded-image">
+        {moviereel[this.state.firstImageIndex + 1]}
+        </div>
+        <div className="faded-image">
+        {moviereel[this.state.firstImageIndex + 2]}
+        </div>
+      </div>
       < Carousel handlerFromParent = {this.updateMovieReel}/>
     </div>
 
