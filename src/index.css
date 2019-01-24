@@ -116,3 +116,19 @@ img{
   border: 4px solid white;
   border-radius: 40px;
 }
+
+.mediumswitch{
+  background-color:rgb(162, 6, 6);
+  color: rgb(245, 236, 21);
+  margin-right: 10%;
+  font-size: 30px;
+}
+
+.mediumswitch:hover{
+  color:white;
+}
+
+.switch{
+  width: 50%;
+  margin: 2% auto;
+}
