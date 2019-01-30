@@ -13,7 +13,7 @@ class Carousel extends React.Component{
     this.nextSlide = this.nextSlide.bind(this);
   }
 
-  previousSlide(event){
+  previousSlide(){
     this.setState({indexChange: - 1});
     alert(this.state.indexChange);
     this.props.handlerFromParent(this.state.indexChange);
@@ -48,8 +48,24 @@ class Carousel extends React.Component{
           glyph="&#9654;" />
       </div>
     );
+  }
 }
-}
+
+  function TvMedium(props){
+    return (
+      <button onClick={props.onClick} className = "mediumswitch">
+        TRENDING TV SHOWS
+      </button>
+    );
+  }
+
+  function MovieMedium(props){
+    return (
+    <button onClick={props.onClick} className = "mediumswitch">
+      TRENDING MOVIES
+    </button>
+  );
+  }
 
 class Moviereel extends React.Component{
   constructor(props){
@@ -71,8 +87,10 @@ class Moviereel extends React.Component{
     // setInterval(this.autoreel(), 1000);
   }
 
-  componentDidUpdate(){
-    this.updateReel(this.state.medium);
+  componentDidUpdate(prevProps, prevState){
+    if (prevState.medium != this.state.medium){
+      this.updateReel(this.state.medium);
+    }
   }
 
 
@@ -88,12 +106,13 @@ class Moviereel extends React.Component{
     this.setState({medium: "Movie"});
   }
 
-  autoreel(){
-    //used to move movie reel to the right on its own with time interval//
-    this.setState({firstImageIndex: this.state.firstImageIndex += 1})
-  }
+  // autoreel(){
+  //   //used to move movie reel to the right on its own with time interval//
+  //   this.setState({firstImageIndex: this.state.firstImageIndex += 1})
+  // }
 
   updateMovieReel(event){
+    console.log(event);
     console.log(this.state.firstImageIndex);
     // used to movie reel left to right
     if (this.state.firstImageIndex + 2 < this.state.hits.length - 1){
@@ -133,8 +152,8 @@ class Moviereel extends React.Component{
     <div className = "moviereel">
       <h1>Trending Movies</h1>
       <div className = "switch">
-        <button onClick = {this.switchtoTV} className = "mediumswitch">TRENDING TVSHOWS</button>
-        <button onClick = {this.switchtoMovie} className = "mediumswitch">TRENDING MOVIES</button>
+        <TvMedium onClick = {this.switchtoTV} />
+        <MovieMedium onClick = {this.switchtoMovie} />
       </div>
       <div className="reel-image">
         <div className = "faded-image">
