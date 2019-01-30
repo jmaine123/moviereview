@@ -56,10 +56,7 @@ class Moviereel extends React.Component{
     super(props);
 
     this.state = {
-      search: this.props.title,
       hits: [],
-      showClass: "image-slide",
-      hiddenClass:"hidden",
       firstImageIndex: 0,
       medium: "movie"
     }
@@ -70,37 +67,47 @@ class Moviereel extends React.Component{
 
   componentDidMount(){
     this.updateReel(this.state.medium);
-    // want to show movies and tv reel//
-    setInterval(this.autoreel(), 1000);
+    // want to show movies and tv reel but not currently working//
+    // setInterval(this.autoreel(), 1000);
   }
 
-  componentDidUpdate(){
+  ComponentDidUpdate(){
     this.updateReel(this.state.medium);
   }
 
+
   switchtoTV(){
     // switch movie reel from movie to tv//
+    alert(this.state.medium);
     this.setState({medium: "TV"});
-    console.log(this.state.medium);
+
   }
 
   switchtoMovie(){
+    // switch movie reel from tv to movie//
     this.setState({medium: "Movie"});
   }
 
   autoreel(){
+    //used to move movie reel to the right on its own with time interval//
     this.setState({firstImageIndex: this.state.firstImageIndex += 1})
   }
 
   updateMovieReel(event){
+    console.log(this.state.firstImageIndex);
     // used to movie reel left to right
     if (this.state.firstImageIndex + 2 < this.state.hits.length - 1){
-    this.setState({firstImageIndex: this.state.firstImageIndex += event});
+      this.setState({
+        firstImageIndex: this.state.firstImageIndex += event,
+        medium: this.state.medium
+      });
+    }
+    else if (this.state.firstImageIndex < 0) {
+      this.setState({firstImageIndex: this.state.hits.length - 1})
     }
     else{
       this.setState({firstImageIndex: 0});
     }
-    console.log(event);
   }
 
   updateReel(medium){
@@ -112,11 +119,7 @@ class Moviereel extends React.Component{
       .then(data => this.setState({
         hits: data["results"],
         homepage: 'http://image.tmdb.org/t/p/w185',
-        poster: data['results'][this.state.firstImageIndex]["poster_path"],
-        title: data['results'][this.state.firstImageIndex]["original_title"],
-        overview: data['results'][this.state.firstImageIndex]["overview"]
       }));
-
   }
 
   render(){
@@ -130,7 +133,7 @@ class Moviereel extends React.Component{
     <div className = "moviereel">
       <h1>Trending Movies</h1>
       <div className = "switch">
-        <button onClick = {this.switchtoTV}className = "mediumswitch">TRENDING TVSHOWS</button>
+        <button onClick = {this.switchtoTV} className = "mediumswitch">TRENDING TVSHOWS</button>
         <button onClick = {this.switchtoMovie} className = "mediumswitch">TRENDING MOVIES</button>
       </div>
       <div className="reel-image">

@@ -54,7 +54,7 @@ class App extends React.Component {
     this.state = {
       hits: [],
       rated: null,
-      value: 'Lion King',
+      value: '',
       actors: [],
       year: "",
       poster: 'http://pngimg.com/uploads/tv/tv_PNG39263.png'
