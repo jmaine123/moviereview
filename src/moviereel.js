@@ -71,7 +71,7 @@ class Moviereel extends React.Component{
     // setInterval(this.autoreel(), 1000);
   }
 
-  ComponentDidUpdate(){
+  componentDidUpdate(){
     this.updateReel(this.state.medium);
   }
 
