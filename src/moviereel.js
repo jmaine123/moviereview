@@ -15,13 +15,11 @@ class Carousel extends React.Component{
 
   previousSlide(){
     this.setState({indexChange: - 1});
-    alert(this.state.indexChange);
     this.props.handlerFromParent(this.state.indexChange);
   }
 
   nextSlide(){
     this.setState({indexChange: 1});
-    alert(this.state.indexChange);
     this.props.handlerFromParent(this.state.indexChange);
 
   }
@@ -98,18 +96,24 @@ class Moviereel extends React.Component{
   switchtoTV(){
     // switch movie reel from movie to tv//
     alert(this.state.medium);
-    this.setState({medium: "TV"});
+    this.setState({
+      medium: "TV",
+      firstImageIndex:0
+    });
 
   }
 
   switchtoMovie(){
     // switch movie reel from tv to movie//
-    this.setState({medium: "Movie"});
+    this.setState({
+      medium: "Movie",
+      firstImageIndex: 0
+  });
   }
 
   autoreel(){
     //used to move movie reel to the right on its own with time interval//
-    if (this.state.firstImageIndex + 2 < this.state.hits.length - 1){
+    if (this.state.firstImageIndex + 2 <= this.state.hits.length - 1){
       this.setState({firstImageIndex: this.state.firstImageIndex += 1});
     }
     else{

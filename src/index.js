@@ -57,7 +57,7 @@ class App extends React.Component {
       value: '',
       actors: [],
       year: "",
-      poster: 'http://pngimg.com/uploads/tv/tv_PNG39263.png'
+      poster: ''
     };
   }
 

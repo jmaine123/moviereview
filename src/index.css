@@ -86,7 +86,21 @@ img{
 }
 
 .moviePoster{
-  height:10%;
+  background-image: url('http://pngimg.com/uploads/tv/tv_PNG39263.png');
+  background-position: center;
+  background-size:contain;
+  background-repeat: no-repeat;
+  margin-top: 5%;
+  height:50vh;
+  width:100%;
+}
+
+.moviescreen{
+  height: 70vh;
+}
+
+.moviescreen img{
+  height:100%;
   width:100%;
 }
 
