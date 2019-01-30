@@ -61,8 +61,13 @@ class App extends React.Component {
     };
   }
 
-  componentDidUpdate(){
-    this.updateData();
+  componentDidUpdate(prevProps, prevState){
+    if (prevState.value != this.state.value){
+      this.updateData();
+    }
+    else if (prevState.year != this.state.year) {
+      this.updateData();
+    }
   }
 
 

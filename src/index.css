@@ -129,6 +129,7 @@ img{
 }
 
 .switch{
-  width: 50%;
+  text-align: center;
+  width: 30%;
   margin: 2% auto;
 }

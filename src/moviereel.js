@@ -79,12 +79,13 @@ class Moviereel extends React.Component{
     this.updateMovieReel = this.updateMovieReel.bind(this);
     this.switchtoTV = this.switchtoTV.bind(this);
     this.switchtoMovie = this.switchtoMovie.bind(this);
+    this.autoreel = this.autoreel.bind(this);
   }
 
   componentDidMount(){
     this.updateReel(this.state.medium);
     // want to show movies and tv reel but not currently working//
-    // setInterval(this.autoreel(), 1000);
+    setInterval(this.autoreel, 5000);
   }
 
   componentDidUpdate(prevProps, prevState){
@@ -106,13 +107,12 @@ class Moviereel extends React.Component{
     this.setState({medium: "Movie"});
   }
 
-  // autoreel(){
-  //   //used to move movie reel to the right on its own with time interval//
-  //   this.setState({firstImageIndex: this.state.firstImageIndex += 1})
-  // }
+  autoreel(){
+    //used to move movie reel to the right on its own with time interval//
+    this.setState({firstImageIndex: this.state.firstImageIndex += 1});
+  }
 
   updateMovieReel(event){
-    console.log(event);
     console.log(this.state.firstImageIndex);
     // used to movie reel left to right
     if (this.state.firstImageIndex + 2 < this.state.hits.length - 1){
@@ -148,14 +148,22 @@ class Moviereel extends React.Component{
     <img src={this.state.homepage + movie["poster_path"]} alt = ''/>
     );
 
+    let mediumbutton;
+    if (this.state.medium == "Movie"){
+      mediumbutton = <TvMedium onClick = {this.switchtoTV} />;
+    }
+    else{
+      mediumbutton = <MovieMedium onClick = {this.switchtoMovie} />;
+    }
+
+
     return(
     <div className = "moviereel">
-      <h1>Trending Movies</h1>
+      <h1>Trending </h1>
       <div className = "switch">
-        <TvMedium onClick = {this.switchtoTV} />
-        <MovieMedium onClick = {this.switchtoMovie} />
+        {mediumbutton}
       </div>
-      <div className="reel-image">
+      <div className="reel-image w3-animate-opacity">
         <div className = "faded-image">
         {moviereel[this.state.firstImageIndex]}
         </div>
