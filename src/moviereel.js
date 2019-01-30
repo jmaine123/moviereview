@@ -74,7 +74,7 @@ class Moviereel extends React.Component{
     this.state = {
       hits: [],
       firstImageIndex: 0,
-      medium: "movie"
+      medium: "Movie"
     }
     this.updateMovieReel = this.updateMovieReel.bind(this);
     this.switchtoTV = this.switchtoTV.bind(this);
@@ -85,11 +85,11 @@ class Moviereel extends React.Component{
   componentDidMount(){
     this.updateReel(this.state.medium);
     // want to show movies and tv reel but not currently working//
-    setInterval(this.autoreel, 5000);
+    setInterval(this.autoreel, 10000);
   }
 
   componentDidUpdate(prevProps, prevState){
-    if (prevState.medium != this.state.medium){
+    if (prevState.medium !== this.state.medium){
       this.updateReel(this.state.medium);
     }
   }
@@ -109,11 +109,17 @@ class Moviereel extends React.Component{
 
   autoreel(){
     //used to move movie reel to the right on its own with time interval//
-    this.setState({firstImageIndex: this.state.firstImageIndex += 1});
+    if (this.state.firstImageIndex + 2 < this.state.hits.length - 1){
+      this.setState({firstImageIndex: this.state.firstImageIndex += 1});
+    }
+    else{
+      this.setState({firstImageIndex: 0});
+    }
+
   }
 
   updateMovieReel(event){
-    console.log(this.state.firstImageIndex);
+
     // used to movie reel left to right
     if (this.state.firstImageIndex + 2 < this.state.hits.length - 1){
       this.setState({
@@ -149,7 +155,7 @@ class Moviereel extends React.Component{
     );
 
     let mediumbutton;
-    if (this.state.medium == "Movie"){
+    if (this.state.medium === "Movie"){
       mediumbutton = <TvMedium onClick = {this.switchtoTV} />;
     }
     else{
@@ -163,7 +169,7 @@ class Moviereel extends React.Component{
       <div className = "switch">
         {mediumbutton}
       </div>
-      <div className="reel-image w3-animate-opacity">
+      <div className="reel-image w3-animate-fading">
         <div className = "faded-image">
         {moviereel[this.state.firstImageIndex]}
         </div>
