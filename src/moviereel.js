@@ -95,9 +95,8 @@ class Moviereel extends React.Component{
 
   switchtoTV(){
     // switch movie reel from movie to tv//
-    alert(this.state.medium);
     this.setState({
-      medium: "TV",
+      medium: "Tv",
       firstImageIndex:0
     });
 
@@ -113,7 +112,7 @@ class Moviereel extends React.Component{
 
   autoreel(){
     //used to move movie reel to the right on its own with time interval//
-    if (this.state.firstImageIndex + 2 <= this.state.hits.length - 1){
+    if (this.state.firstImageIndex + 2 < this.state.hits.length - 1){
       this.setState({firstImageIndex: this.state.firstImageIndex += 1});
     }
     else{
@@ -140,14 +139,14 @@ class Moviereel extends React.Component{
   }
 
   updateReel(medium){
-    const API = 'https://api.themoviedb.org/3/trending/'+medium+'/week?api_key=';
+    const API = 'https://api.themoviedb.org/3/trending/'+medium+'/day?api_key=';
     const API_KEY = 'df778a42ee342c0ddeb2a39ee9b1ab9e';
 
     fetch(API + API_KEY)
       .then(response => response.json())
       .then(data => this.setState({
         hits: data["results"],
-        homepage: 'http://image.tmdb.org/t/p/w185',
+        homepage: 'http://image.tmdb.org/t/p/w500',
       }));
   }
 
@@ -169,15 +168,14 @@ class Moviereel extends React.Component{
 
     return(
     <div className = "moviereel">
-      <h1>Trending </h1>
       <div className = "switch">
         {mediumbutton}
       </div>
       <div className="reel-image w3-animate-fading">
-        <div className = "faded-image">
+        <div className = "nonfaded-image">
         {moviereel[this.state.firstImageIndex]}
         </div>
-        <div className="nonfaded-image">
+        <div className="faded-image">
         {moviereel[this.state.firstImageIndex + 1]}
         </div>
         <div className="faded-image">

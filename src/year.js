@@ -24,7 +24,6 @@ class Year extends React.Component{
   }
 
   handleSubmit(event) {
-    alert('year: ' + this.state.year);
     event.preventDefault();
     // To reference the method on App, you have to pass it as this.props.callBack to get access to the callback
     // this.props.onSubmit(this.state.term);

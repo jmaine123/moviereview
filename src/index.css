@@ -11,6 +11,12 @@ body{
   height:100%;
 }
 
+.searching{
+  background-color: yellow;
+  height:40px;
+  color:red;
+}
+
 
 .theatre{
   display: grid;
@@ -78,11 +84,18 @@ img{
 
 .header{
   width:80%;
-  margin: 0 auto;
-  height:20vh;
-  font-size: 60px;
+  margin: 5% auto;
+  height:30vh;
   text-align: center;
   background-color: rgb(23, 23, 23, .7);
+  border-radius: 10px;
+}
+
+.header h1{
+  font-size: 90px;
+  margin: 0 auto;
+  padding: 5%;
+  font-family: 'ZCOOL KuaiLe', cursive;
 }
 
 .moviePoster{
@@ -115,10 +128,12 @@ img{
 .carousel{
   width: 80%;
   margin: 0 auto;
+  text-align: center;
 }
 
 .carousel div{
   display: inline-grid;
+  margin-right:5%;
   font-size: 50px;
 }
 
@@ -146,4 +161,17 @@ img{
   text-align: center;
   width: 30%;
   margin: 2% auto;
+}
+
+.slide-arrow:hover{
+  color:rgb(245, 236, 21);
+}
+
+.movie-clock{
+  background-image: linear-gradient(to right, red , rgba(210, 45, 65, 0.61));
+  color:white;
+  width:20%;
+  border-radius: 10px;
+  border: 2px solid silver;
+  font-size: 30px;
 }

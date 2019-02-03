@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Year from './year.js';
 import Moviereel from './moviereel.js'
+import Clock from './clock.js'
 
 
 
@@ -86,7 +87,8 @@ class App extends React.Component {
         actors: data["Actors"].split(","),
         type: data["Type"],
         boxOffice: data["BoxOffice"],
-        poster: data["Poster"]
+        poster: data["Poster"],
+        awards: data["Awards"]
       }));
   }
 
@@ -118,8 +120,9 @@ class App extends React.Component {
 
   return (
     <div>
+      <Clock />
       <div className = "header">
-      <h1>Movie Rating</h1>
+      <h1 className = "animated flipInX delay-1s">Movie Review</h1>
       </div>
       <div className = "theatre">
         <div className = "searchbar">
@@ -137,10 +140,14 @@ class App extends React.Component {
           <h2>{this.state.rated}</h2>
           <h2>{this.state.source}</h2>
         <p>{this.state.ratings}</p>
+          <h2>Release Date:</h2>
           <h3>{this.state.released}</h3>
           <h3> Actors/Actresses:</h3>
           <ul>{listItems}</ul>
+          <h2>Box Office:</h2>
           <h2>{this.state.boxOffice}</h2>
+          <h2>Awards:</h2>
+          <h3>{this.state.awards}</h3>
         </div>
       </div>
       <Moviereel />
