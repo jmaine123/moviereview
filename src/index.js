@@ -38,7 +38,8 @@ class Search extends React.Component {
         </label>
         <br />
         <input className="searching" type="text" value = {this.state.value} onChange = {this.handleChange}/>
-        <input type="submit" value="Submit" />
+        <br />
+        <input className = "submit" type="submit" value="Submit" />
       </form>
     );
   };
@@ -122,6 +123,7 @@ class App extends React.Component {
     <div>
       <Clock />
       <div className = "header">
+      <img src=""/>
       <h1 className = "animated flipInX delay-1s">Movie Review</h1>
       </div>
       <div className = "theatre">
@@ -137,6 +139,7 @@ class App extends React.Component {
         <div className = "movieinfo">
           <h1>{this.state.title}</h1>
           <h3>Type: {this.state.type}</h3>
+          <h3>Rated:</h3>
           <h2>{this.state.rated}</h2>
           <h2>{this.state.source}</h2>
         <p>{this.state.ratings}</p>

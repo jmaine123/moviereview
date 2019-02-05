@@ -12,9 +12,17 @@ body{
 }
 
 .searching{
-  background-color: yellow;
-  height:40px;
+  background-color: rgb(239, 242, 61);
   color:red;
+  font-size: 90vh;
+  border: 1px solid white;
+  border-radius: 40px;
+  width:70%;
+}
+
+.submit{
+  color: rgb(239, 242, 61);
+  background-color: red;
 }
 
 
@@ -31,9 +39,7 @@ body{
   "pic .";
 }
 
-.theatre div{
-  border-radius: 20px;
-}
+
 
 .searchbar{
   grid-area: pic;

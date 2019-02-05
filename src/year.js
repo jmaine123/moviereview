@@ -3,11 +3,6 @@ import React from 'react';
 import './index.css';
 
 
-
-// function Yearlist(props){
-//
-// }
-
 class Year extends React.Component{
   constructor(props) {
     super(props);
@@ -42,20 +37,14 @@ class Year extends React.Component{
     const yearList = years.map((year) =>
     <option key ={year.toString()} value={year.toString()}>{year}</option>);
     return(
-      // <form onSubmit={this.handleSubmit}>
-      //   <label>Year:</label>
-      //   <br />
-      //   <input className="yearsearch" type="text" value = {this.state.year} onChange = {this.handleChange}/>
-      //
-      //   <input type="submit" value="Submit" />
-      // </form>
       <form onSubmit= {this.handleSubmit}>
         <label>Year:</label>
         <select className = "yearsearch" value = {this.state.year} name="year" onChange = {this.handleChange}>
           <option value=" "></option>
           {yearList}
         </select>
-        <input type="submit" value="Submit" />
+        <br />
+        <input className = "submit" type="submit" value="Submit" />
 
       </form>
 
