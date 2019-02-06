@@ -4,6 +4,7 @@ import './index.css';
 import Year from './year.js';
 import Moviereel from './moviereel.js'
 import Clock from './clock.js'
+import Trailer from './trailer.js'
 
 
 
@@ -59,7 +60,7 @@ class App extends React.Component {
       value: '',
       actors: [],
       year: "",
-      poster: ''
+      poster: '',
     };
   }
 
@@ -89,7 +90,7 @@ class App extends React.Component {
         type: data["Type"],
         boxOffice: data["BoxOffice"],
         poster: data["Poster"],
-        awards: data["Awards"]
+        awards: data["Awards"],
       }));
   }
 

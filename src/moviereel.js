@@ -1,6 +1,7 @@
 import React from 'react';
 // import ReactDOM from 'react-dom';
 import './index.css';
+import Trailer from './trailer.js'
 
 class Carousel extends React.Component{
   constructor (props) {
@@ -72,7 +73,8 @@ class Moviereel extends React.Component{
     this.state = {
       hits: [],
       firstImageIndex: 0,
-      medium: "Movie"
+      medium: "Movie",
+      movie_id: ''
     }
     this.updateMovieReel = this.updateMovieReel.bind(this);
     this.switchtoTV = this.switchtoTV.bind(this);
@@ -127,7 +129,8 @@ class Moviereel extends React.Component{
     if (this.state.firstImageIndex + 2 < this.state.hits.length - 1){
       this.setState({
         firstImageIndex: this.state.firstImageIndex += event,
-        medium: this.state.medium
+        medium: this.state.medium,
+        movie_id: this.state.movie_id
       });
     }
     else if (this.state.firstImageIndex < 0) {
@@ -146,7 +149,9 @@ class Moviereel extends React.Component{
       .then(response => response.json())
       .then(data => this.setState({
         hits: data["results"],
+        movie_id:data["results"][this.state.firstImageIndex]["id"],
         homepage: 'http://image.tmdb.org/t/p/w500',
+        video_url:'https://www.youtube.com/watch?v='
       }));
   }
 
@@ -168,6 +173,7 @@ class Moviereel extends React.Component{
 
     return(
     <div className = "moviereel">
+
       <div className = "switch">
         {mediumbutton}
       </div>
@@ -182,7 +188,9 @@ class Moviereel extends React.Component{
         {moviereel[this.state.firstImageIndex + 2]}
         </div>
       </div>
+
       < Carousel handlerFromParent = {this.updateMovieReel}/>
+      <Trailer movie_id = {this.state.movie_id}/>
     </div>
 
     );
