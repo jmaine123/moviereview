@@ -121,7 +121,7 @@ class App extends React.Component {
 
 
   return (
-    <div>
+    <div className = 'container'>
       <Clock />
       <div className = "header">
       <img src=""/>

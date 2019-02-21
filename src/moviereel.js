@@ -115,7 +115,7 @@ class Moviereel extends React.Component{
   autoreel(){
     //used to move movie reel to the right on its own with time interval//
     if (this.state.firstImageIndex + 2 < this.state.hits.length - 1){
-      this.setState({firstImageIndex: this.state.firstImageIndex += 1});
+      this.setState({firstImageIndex: this.state.firstImageIndex});
     }
     else{
       this.setState({firstImageIndex: 0});
@@ -130,7 +130,6 @@ class Moviereel extends React.Component{
       this.setState({
         firstImageIndex: this.state.firstImageIndex += event,
         medium: this.state.medium,
-        movie_id: this.state.movie_id
       });
     }
     else if (this.state.firstImageIndex < 0) {
@@ -190,7 +189,7 @@ class Moviereel extends React.Component{
       </div>
 
       < Carousel handlerFromParent = {this.updateMovieReel}/>
-      <Trailer movie_id = {this.state.movie_id}/>
+      <Trailer movie_id = {this.state.movie_id} medium = {this.state.medium}/>
     </div>
 
     );

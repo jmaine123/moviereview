@@ -28,7 +28,7 @@ class Clock extends React.Component {
   render() {
     return (
       <p className="movie-clock">
-        Today Date: {this.state.time}.
+        {this.state.time}
       </p>
     );
   }
