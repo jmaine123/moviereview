@@ -58,15 +58,44 @@ iframe{
 .movieinfo{
   grid-area: info;
   margin-top: 5%;
-  padding-left: 5%;
   font-size: 3vh;
   background-image: linear-gradient(to right, black , rgb(130, 12, 5));
   border: 2px solid black;
   overflow: scroll;
+  display: grid;
+  grid-template-columns: 45% 45%;
+  grid-column-gap: 10%;
+  grid-template-rows: auto;
+  grid-template-areas:
+  "title title"
+  "specifics contributions"
+  "credits credits";
 }
+
+.movie_title{
+  grid-area: title;
+  text-align: center;
+}
+
+.movie_specifics{
+  grid-area: specifics;
+  padding-left: 5%;
+}
+
+.contributions{
+  grid-area: contributions;
+}
+
+.credits{
+  grid-area: credits;
+  text-align: center;
+  border: 1px solid white;
+}
+
 
 .actorList{
   list-style: none;
+  font-size: 20px;
 }
 
 

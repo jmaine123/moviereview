@@ -4,7 +4,6 @@ import './index.css';
 import Year from './year.js';
 import Moviereel from './moviereel.js'
 import Clock from './clock.js'
-import Trailer from './trailer.js'
 
 
 
@@ -125,7 +124,6 @@ class App extends React.Component {
     <div className = 'container'>
       <Clock />
       <div className = "header">
-      <img src=""/>
       <h1 className = "animated flipInX delay-1s">Movie Review</h1>
       </div>
       <div className = "theatre">
@@ -139,21 +137,30 @@ class App extends React.Component {
         </div>
         </div>
         <div className = "movieinfo">
-          <h1>{this.state.title}</h1>
-          <h3>Type: {this.state.type}</h3>
+          <div className = "movie_title">
+          <h1>Movie Title: {this.state.title}</h1>
+          </div>
+          <div className = "movie_specifics">
+          <h3>Type:</h3>
+          <h4>{this.state.type}</h4>
+          <h3>Genre: </h3>
           <h3>{this.state.genre}</h3>
           <h3>Rated:</h3>
-          <h2>{this.state.rated}</h2>
-          <h2>{this.state.source}</h2>
-        <p>{this.state.ratings}</p>
+          <h3>{this.state.rated}</h3>
+        <h3>Rating: {this.state.ratings}</h3>
           <h3>Release Date:</h3>
           <h3>{this.state.released}</h3>
+          </div>
+          <div className = "contributions">
           <h3> Actors/Actresses:</h3>
           <ul>{listItems}</ul>
-          <h3>Box Office:</h3>
-          <h2>{this.state.boxOffice}</h2>
+          </div>
+          <div className = "credits">
+          <h2>Box Office:</h2>
+          <h3>{this.state.boxOffice}</h3>
           <h2>Awards:</h2>
           <h3>{this.state.awards}</h3>
+          </div>
         </div>
       </div>
       <Moviereel />
