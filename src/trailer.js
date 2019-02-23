@@ -28,7 +28,7 @@ class Trailer extends React.Component{
   render(){
     const video =
     <iframe width="720" height="420"
-    src={this.state.video_url + this.state.key+'?rel=0;autoplay=0'} allow='autoplay' allowFullScreen>
+    src={this.state.video_url + this.state.key+'?rel=0;autoplay=1'} allow='autoplay' allowFullScreen>
     </iframe>;
     return(
       <div className="trailervideo">

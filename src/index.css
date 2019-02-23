@@ -38,39 +38,37 @@ iframe{
 
 .theatre{
   display: grid;
-  grid-template-columns: 55% 35%;
+  grid-template-columns: 30% 55%;
   grid-column-gap: 10%;
   grid-template-rows: auto;
   margin:10% auto;
-  text-align: center;
-  width:80%;
+  width:90%;
   grid-template-areas:
   "pic info"
-  "pic .";
+  "pic info";
 }
 
 
 
 .searchbar{
   grid-area: pic;
+  text-align: center;
 }
 
 .movieinfo{
   grid-area: info;
-  margin-top: 10%;
+  margin-top: 5%;
+  padding-left: 5%;
   font-size: 3vh;
   background-image: linear-gradient(to right, black , rgb(130, 12, 5));
   border: 2px solid black;
-
+  overflow: scroll;
 }
 
 .actorList{
   list-style: none;
 }
 
-.moviedetails{
-  grid-area: details
-}
 
 .searching{
   font-size: 20px;

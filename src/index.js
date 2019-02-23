@@ -91,6 +91,7 @@ class App extends React.Component {
         boxOffice: data["BoxOffice"],
         poster: data["Poster"],
         awards: data["Awards"],
+        genre: data["Genre"]
       }));
   }
 
@@ -140,15 +141,16 @@ class App extends React.Component {
         <div className = "movieinfo">
           <h1>{this.state.title}</h1>
           <h3>Type: {this.state.type}</h3>
+          <h3>{this.state.genre}</h3>
           <h3>Rated:</h3>
           <h2>{this.state.rated}</h2>
           <h2>{this.state.source}</h2>
         <p>{this.state.ratings}</p>
-          <h2>Release Date:</h2>
+          <h3>Release Date:</h3>
           <h3>{this.state.released}</h3>
           <h3> Actors/Actresses:</h3>
           <ul>{listItems}</ul>
-          <h2>Box Office:</h2>
+          <h3>Box Office:</h3>
           <h2>{this.state.boxOffice}</h2>
           <h2>Awards:</h2>
           <h3>{this.state.awards}</h3>
