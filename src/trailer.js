@@ -15,7 +15,7 @@ class Trailer extends React.Component{
   }
 
   updateTrailer(id, medium){
-    const API = 'https://api.themoviedb.org/3/movie/'+ id +'/videos?api_key=';
+    const API = 'https://api.themoviedb.org/3/'+medium+'/'+ id +'/videos?api_key=';
     const API_KEY = 'df778a42ee342c0ddeb2a39ee9b1ab9e';
 
     fetch(API + API_KEY)

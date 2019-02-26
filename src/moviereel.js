@@ -66,6 +66,14 @@ class Carousel extends React.Component{
   );
   }
 
+  function PersonMedium(props){
+    return (
+    <button onClick={props.onClick} className = "mediumswitch">
+      TRENDING ACTORS/ACTRESS
+    </button>
+  );
+  }
+
 class Moviereel extends React.Component{
   constructor(props){
     super(props);
@@ -73,7 +81,7 @@ class Moviereel extends React.Component{
     this.state = {
       hits: [],
       firstImageIndex: 0,
-      medium: "Movie",
+      medium: "movie",
       movie_id: ''
     }
     this.updateMovieReel = this.updateMovieReel.bind(this);
@@ -98,7 +106,7 @@ class Moviereel extends React.Component{
   switchtoTV(){
     // switch movie reel from movie to tv//
     this.setState({
-      medium: "Tv",
+      medium: "tv",
       firstImageIndex:0
     });
 
@@ -107,10 +115,20 @@ class Moviereel extends React.Component{
   switchtoMovie(){
     // switch movie reel from tv to movie//
     this.setState({
-      medium: "Movie",
+      medium: "movie",
       firstImageIndex: 0
   });
   }
+
+  switchtoPerson(){
+    // switch movie reel to person//
+    this.setState({
+      medium: "person",
+      firstImageIndex: 0,
+  });
+  }
+
+
 
   autoreel(){
     //used to move movie reel to the right on its own with time interval//
@@ -156,15 +174,18 @@ class Moviereel extends React.Component{
 
   render(){
     const movies = this.state.hits
-
+    console.log(this.state.movie_id)
     const moviereel = movies.map((movie) =>
     <img src={this.state.homepage + movie["poster_path"]} alt = ''/>
     );
 
     let mediumbutton;
-    if (this.state.medium === "Movie"){
+    if (this.state.medium === "movie"){
       mediumbutton = <TvMedium onClick = {this.switchtoTV} />;
     }
+    // else if (this.state.medium === "tv"){
+    //   mediumbutton = <PersonMedium onClick = {this.switchtoPerson} />;
+    // }
     else{
       mediumbutton = <MovieMedium onClick = {this.switchtoMovie} />;
     }
