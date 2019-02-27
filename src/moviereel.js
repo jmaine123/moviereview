@@ -187,17 +187,23 @@ class Moviereel extends React.Component{
     const photos = this.state.hits
     // console.log(this.state.movie_id)
     let moviereel
+    let namereel
     if (this.state.medium == "person"){
       moviereel = photos.map((photo) =>
-      <img src={this.state.homepage + photo["profile_path"]} alt = ''/>
+        <img src={this.state.homepage + photo["profile_path"]} alt = ''/>
       );
 
-      console.log(photos);
-      console.log(this.state.medium)
+      namereel = photos.map((photo) =>
+        <h1>{photo["name"]}</h1>
+      );
     }
     else {
       moviereel = photos.map((photo) =>
       <img src={this.state.homepage + photo["poster_path"]} alt = ''/>
+      );
+
+      namereel = photos.map((photo) =>
+        <h1>{photo["name"]}</h1>
       );
     }
 
@@ -223,12 +229,15 @@ class Moviereel extends React.Component{
       <div className="reel-image w3-animate-fading">
         <div className = "nonfaded-image">
         {moviereel[this.state.firstImageIndex]}
+        {namereel[this.state.firstImageIndex]}
         </div>
         <div className="faded-image">
         {moviereel[this.state.firstImageIndex + 1]}
+        {namereel[this.state.firstImageIndex + 1]}
         </div>
         <div className="faded-image">
         {moviereel[this.state.firstImageIndex + 2]}
+        {namereel[this.state.firstImageIndex + 2]}
         </div>
       </div>
 
