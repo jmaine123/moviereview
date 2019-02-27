@@ -87,6 +87,7 @@ class Moviereel extends React.Component{
     this.updateMovieReel = this.updateMovieReel.bind(this);
     this.switchtoTV = this.switchtoTV.bind(this);
     this.switchtoMovie = this.switchtoMovie.bind(this);
+    this.switchtoPerson = this.switchtoPerson.bind(this);
     this.autoreel = this.autoreel.bind(this);
   }
 
@@ -133,7 +134,7 @@ class Moviereel extends React.Component{
   autoreel(){
     //used to move movie reel to the right on its own with time interval//
     if (this.state.firstImageIndex + 2 < this.state.hits.length - 1){
-      this.setState({firstImageIndex: this.state.firstImageIndex});
+      this.setState({firstImageIndex: this.state.firstImageIndex += 1});
     }
     else{
       this.setState({firstImageIndex: 0});
@@ -159,33 +160,55 @@ class Moviereel extends React.Component{
   }
 
   updateReel(medium){
-    const API = 'https://api.themoviedb.org/3/trending/'+medium+'/day?api_key=';
+    const API = 'https://api.themoviedb.org/3/trending/'+medium+'/week?api_key=';
     const API_KEY = 'df778a42ee342c0ddeb2a39ee9b1ab9e';
-
-    fetch(API + API_KEY)
-      .then(response => response.json())
-      .then(data => this.setState({
-        hits: data["results"],
-        movie_id:data["results"][this.state.firstImageIndex]["id"],
-        homepage: 'http://image.tmdb.org/t/p/w500',
-        video_url:'https://www.youtube.com/watch?v='
-      }));
+    if (medium == "person"){
+      fetch(API + API_KEY)
+        .then(response => response.json())
+        .then(data => this.setState({
+          hits: data["results"],
+          homepage: 'http://image.tmdb.org/t/p/w500',
+          video_url:'https://www.youtube.com/watch?v=',
+        }));
+    }
+    else {
+      fetch(API + API_KEY)
+        .then(response => response.json())
+        .then(data => this.setState({
+          hits: data["results"],
+          movie_id:data["results"][this.state.firstImageIndex]["id"],
+          homepage: 'http://image.tmdb.org/t/p/w500',
+          video_url:'https://www.youtube.com/watch?v='
+        }));
+    }
   }
 
   render(){
-    const movies = this.state.hits
-    console.log(this.state.movie_id)
-    const moviereel = movies.map((movie) =>
-    <img src={this.state.homepage + movie["poster_path"]} alt = ''/>
-    );
+    const photos = this.state.hits
+    // console.log(this.state.movie_id)
+    let moviereel
+    if (this.state.medium == "person"){
+      moviereel = photos.map((photo) =>
+      <img src={this.state.homepage + photo["profile_path"]} alt = ''/>
+      );
+
+      console.log(photos);
+      console.log(this.state.medium)
+    }
+    else {
+      moviereel = photos.map((photo) =>
+      <img src={this.state.homepage + photo["poster_path"]} alt = ''/>
+      );
+    }
+
 
     let mediumbutton;
     if (this.state.medium === "movie"){
       mediumbutton = <TvMedium onClick = {this.switchtoTV} />;
     }
-    // else if (this.state.medium === "tv"){
-    //   mediumbutton = <PersonMedium onClick = {this.switchtoPerson} />;
-    // }
+    else if (this.state.medium === "tv"){
+      mediumbutton = <PersonMedium onClick = {this.switchtoPerson} />;
+    }
     else{
       mediumbutton = <MovieMedium onClick = {this.switchtoMovie} />;
     }
