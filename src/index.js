@@ -126,15 +126,17 @@ class App extends React.Component {
       <div className = "header">
       <h1 className = "animated flipInX delay-1s">Movie Review</h1>
       </div>
+
       <div className = "theatre">
         <div className = "searchbar">
-        <Search value={this.state.value} handlerFromParent = {this.changeValue}/>
-        <Year value={this.state.year} handlerFromParent ={this.updateYear}/>
-        <div className = "moviePoster">
-          <div className = "moviescreen">
-          {moviePoster}
-          </div>
-        </div>
+            <Search value={this.state.value} handlerFromParent = {this.changeValue}/>
+
+            <Year value={this.state.year} handlerFromParent ={this.updateYear}/>
+            <div className = "moviePoster">
+              <div className = "moviescreen">
+              {moviePoster}
+              </div>
+            </div>
         </div>
         <div className = "movieinfo">
           <div className = "movie_title">
