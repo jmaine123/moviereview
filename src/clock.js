@@ -27,9 +27,9 @@ class Clock extends React.Component {
 
   render() {
     return (
-      <p className="movie-clock">
-        {this.state.time}
-      </p>
+      <div className ="movie_clock" >
+        <h2>{this.state.time}</h2>
+      </div>
     );
   }
 }

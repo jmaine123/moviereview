@@ -123,8 +123,9 @@ class App extends React.Component {
   return (
     <div className = 'container'>
       <Clock />
+
       <div className = "header">
-      <h1 className = "animated flipInX delay-1s">Movie Review</h1>
+        <h1 className = "animated flipInX delay-1s">Movie Review</h1>
       </div>
 
       <div className = "theatre">
@@ -139,30 +140,35 @@ class App extends React.Component {
             </div>
         </div>
         <div className = "movieinfo">
+
           <div className = "movie_title">
-          <h1>Movie Title: {this.state.title}</h1>
+            <h1>Movie Title: {this.state.title}</h1>
           </div>
+
           <div className = "movie_specifics">
-          <h3>Type:</h3>
-          <h4>{this.state.type}</h4>
-          <h3>Genre: </h3>
-          <h3>{this.state.genre}</h3>
-          <h3>Rated:</h3>
-          <h3>{this.state.rated}</h3>
-        <h3>Rating: {this.state.ratings}</h3>
-          <h3>Release Date:</h3>
-          <h3>{this.state.released}</h3>
+            <h3>Type:</h3>
+            <h4>{this.state.type}</h4>
+            <h3>Genre: </h3>
+            <h3>{this.state.genre}</h3>
+            <h3>Rated:</h3>
+            <h3>{this.state.rated}</h3>
+            <h3>Rating: {this.state.ratings}</h3>
+            <h3>Release Date:</h3>
+            <h3>{this.state.released}</h3>
           </div>
+
           <div className = "contributions">
-          <h3> Actors/Actresses:</h3>
-          <ul>{listItems}</ul>
+            <h3> Actors/Actresses:</h3>
+            <ul>{listItems}</ul>
           </div>
+
           <div className = "credits">
-          <h2>Box Office:</h2>
-          <h3>{this.state.boxOffice}</h3>
-          <h2>Awards:</h2>
-          <h3>{this.state.awards}</h3>
+            <h2>Box Office:</h2>
+            <h3>{this.state.boxOffice}</h3>
+            <h2>Awards:</h2>
+            <h3>{this.state.awards}</h3>
           </div>
+
         </div>
       </div>
       <Moviereel />
